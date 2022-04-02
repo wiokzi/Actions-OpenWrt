@@ -19,8 +19,8 @@ on:
       #- master
 
   schedule:
-    # 对应的是 UTC 时间，需要转换，0 代表北京时间8点，每个月1日/15日8点编译一次
-    - cron: 25 11 2 * *
+    # 对应的是 UTC 时间，需要转换，0 代表北京时间8点，每个月1日/15日16点编译一次
+    - cron: 0 8 1,15 * *
 
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
