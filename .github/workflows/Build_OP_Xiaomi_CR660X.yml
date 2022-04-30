@@ -20,7 +20,7 @@ on:
 
   schedule:
     # 对应的是 UTC 时间，需要转换，0 代表北京时间8点，每个月1日/15日8点编译一次
-    - cron: 35 3 29 * *
+    - cron: 0 0 1/15 * *
 
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
@@ -132,7 +132,7 @@ jobs:
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       run: |
-        echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M")"
+        echo "::set-output name=release_tag::$(date +"%Y.%m.%d-Xiaomi-CR660X")"
         touch release.txt
         echo "::set-output name=status::success"
     - name: Upload firmware to release
