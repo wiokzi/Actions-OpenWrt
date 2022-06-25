@@ -71,8 +71,8 @@ jobs:
     # 配置 openClash
     - name: OpenClash
       run: |
-        mkdir package/luci-app-openclash
-        cd package/luci-app-openclash
+        mkdir openwrt/package/luci-app-openclash
+        cd openwrt/package/luci-app-openclash
         git init
         git remote add -f origin https://github.com/vernesong/OpenClash.git
         git config core.sparsecheckout true
