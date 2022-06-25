@@ -20,7 +20,7 @@ on:
 
   schedule:
     # 对应的是 UTC 时间，需要转换，0 代表北京时间8点，每个月1日/15日8点编译一次
-    - cron: 33 7 25 * *
+    - cron: 40 7 25 * *
 
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
@@ -62,12 +62,6 @@ jobs:
         df -hT $PWD
         git clone $REPO_URL -b $REPO_BRANCH openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
-    - name: Load custom feeds
-      run: |
-        [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
-        chmod +x $DIY_P1_SH
-        cd openwrt
-        $GITHUB_WORKSPACE/$DIY_P1_SH
     # 配置 openClash
     - name: OpenClash
       run: |
@@ -81,10 +75,8 @@ jobs:
         git branch --set-upstream-to=origin/master master
     - name: Update feeds
       run: cd openwrt && ./scripts/feeds update -a
-
     - name: Install feeds
       run: cd openwrt && ./scripts/feeds install -a
-
     - name: Load custom configuration
       run: |
         [ -e files ] && mv files openwrt/files
